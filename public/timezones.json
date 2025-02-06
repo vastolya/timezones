@@ -1,13 +1,12 @@
 [
-  { "city": "Krasnoyarsk", "timezoneOffset": 0 },
-  { "city": "New York", "timezoneOffset": -12 },
-  { "city": "London", "timezoneOffset": -7 },
-  { "city": "Moscow", "timezoneOffset": -4 },
-  { "city": "Tokyo", "timezoneOffset": 2 },
-  { "city": "Sydney", "timezoneOffset": 4 },
-  { "city": "Berlin", "timezoneOffset": -6 },
-  { "city": "Dubai", "timezoneOffset": -3 },
-  { "city": "Beijing", "timezoneOffset": 1 },
-  { "city": "Los Angeles", "timezoneOffset": -15 },
-  { "city": "São Paulo", "timezoneOffset": -10 }
+  { "city": "Krasnoyarsk", "offset": 0 },
+  { "city": "New York", "offset": -12 },
+  { "city": "London", "offset": -7 },
+  { "city": "Moscow", "offset": -4 },
+  { "city": "Tokyo", "offset": 2 },
+  { "city": "Sydney", "offset": 4 },
+  { "city": "Berlin", "offset": -6 },
+  { "city": "Dubai", "offset": -3 },
+  { "city": "Beijing", "offset": 1 },
+  { "city": "São Paulo", "offset": -10 }
 ]

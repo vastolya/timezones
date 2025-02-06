@@ -9,12 +9,14 @@ interface TimezonesState {
   data: Timezone[];
   loading: boolean;
   error: string | null;
+  selectedCities: Timezone[];
 }
 
 const initialState: TimezonesState = {
   data: [],
   loading: false,
   error: null,
+  selectedCities: [],
 };
 
 export const fetchTimezones = createAsyncThunk<Timezone[], void>(
@@ -35,7 +37,20 @@ export const fetchTimezones = createAsyncThunk<Timezone[], void>(
 const timezonesSlice = createSlice({
   name: "timezones",
   initialState,
-  reducers: {},
+  reducers: {
+    addCity: (state, action) => {
+      const { city, offset } = action.payload;
+      if (state.selectedCities.length < 10) {
+        state.selectedCities.push({ city, offset });
+      }
+    },
+    removeCity: (state, action) => {
+      const city = action.payload;
+      state.selectedCities = state.selectedCities.filter(
+        (i) => i.city !== city
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTimezones.pending, (state) => {
@@ -52,5 +67,7 @@ const timezonesSlice = createSlice({
       });
   },
 });
+
+export const { addCity, removeCity } = timezonesSlice.actions;
 
 export default timezonesSlice.reducer;
