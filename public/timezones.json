@@ -1,0 +1,13 @@
+[
+  { "city": "Krasnoyarsk", "timezoneOffset": 0 },
+  { "city": "New York", "timezoneOffset": -12 },
+  { "city": "London", "timezoneOffset": -7 },
+  { "city": "Moscow", "timezoneOffset": -4 },
+  { "city": "Tokyo", "timezoneOffset": 2 },
+  { "city": "Sydney", "timezoneOffset": 4 },
+  { "city": "Berlin", "timezoneOffset": -6 },
+  { "city": "Dubai", "timezoneOffset": -3 },
+  { "city": "Beijing", "timezoneOffset": 1 },
+  { "city": "Los Angeles", "timezoneOffset": -15 },
+  { "city": "São Paulo", "timezoneOffset": -10 }
+]
