@@ -27,17 +27,10 @@ const App = () => {
     (city) => !selectedCities.some((selected) => selected.city === city.city)
   );
 
-  const getCityTime = (offset: number) => {
-    const localTime = new Date();
-    const cityTime = new Date(localTime.getTime() + offset * 60 * 60 * 1000);
-    return cityTime.toLocaleString();
-  };
-
   if (loading) return <p>loading</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
   return (
     <>
-      {/* <Clock /> */}
       <div>
         <div>
           <label>Выбери город:</label>

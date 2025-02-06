@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Clock.css";
 
 interface ClockProps {
@@ -38,11 +38,6 @@ function Clock({ offset }: ClockProps) {
     }
     return marks;
   };
-
-  if (isNaN(adjustedTime.getTime())) {
-    console.error("Invalid time:", adjustedTime);
-    return <div>Ошибка времени</div>; // Выводим ошибку если время некорректно
-  }
 
   return (
     <div className="clock">
