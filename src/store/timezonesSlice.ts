@@ -1,6 +1,11 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Timezone {
+  city: string;
+  offset: number;
+}
+
+interface ClockState {
   city: string;
   offset: number;
 }
@@ -9,26 +14,26 @@ interface TimezonesState {
   data: Timezone[];
   loading: boolean;
   error: string | null;
-  selectedCities: Timezone[];
+  clocks: ClockState[];
 }
 
 const initialState: TimezonesState = {
   data: [],
   loading: false,
   error: null,
-  selectedCities: [],
+  clocks: [],
 };
 
 export const fetchTimezones = createAsyncThunk<Timezone[], void>(
-  "timezomes/fetchTimezones",
+  "timezones/fetchTimezones",
   async (_, { rejectWithValue }) => {
     try {
       const response = await fetch("/timezones.json");
-      if (!response) throw new Error("data fetch error");
-      return response.json();
+      if (!response.ok) throw new Error("Data fetch error");
+      return await response.json();
     } catch (error) {
       return rejectWithValue(
-        error instanceof Error ? error.message : "dara fetch error catched"
+        error instanceof Error ? error.message : "Data fetch error caught"
       );
     }
   }
@@ -38,17 +43,22 @@ const timezonesSlice = createSlice({
   name: "timezones",
   initialState,
   reducers: {
-    addCity: (state, action) => {
-      const { city, offset } = action.payload;
-      if (state.selectedCities.length < 10) {
-        state.selectedCities.push({ city, offset });
+    addClock: (state, action: PayloadAction<string>) => {
+      const city = action.payload || state.data[0]?.city; // default to the first city
+      const timezone = state.data.find((tz) => tz.city === city);
+      if (timezone) {
+        state.clocks.push({ city, offset: timezone.offset });
       }
     },
-    removeCity: (state, action) => {
-      const city = action.payload;
-      state.selectedCities = state.selectedCities.filter(
-        (i) => i.city !== city
-      );
+    removeClock: (state, action) => {
+      state.clocks.splice(action.payload, 1);
+    },
+    updateClockCity: (state, action) => {
+      const { index, city } = action.payload;
+      const timezone = state.data.find((tz) => tz.city === city);
+      if (timezone) {
+        state.clocks[index] = { city: timezone.city, offset: timezone.offset };
+      }
     },
   },
   extraReducers: (builder) => {
@@ -68,6 +78,7 @@ const timezonesSlice = createSlice({
   },
 });
 
-export const { addCity, removeCity } = timezonesSlice.actions;
+export const { addClock, removeClock, updateClockCity } =
+  timezonesSlice.actions;
 
 export default timezonesSlice.reducer;

@@ -17,7 +17,7 @@ function Clock({ offset }: ClockProps) {
 
   const adjustedTime = new Date(time.getTime() + offset * 60 * 60 * 1000);
 
-  const formattedTime = `${adjustedTime.getHours() % 12}:${adjustedTime
+  const formattedTime = `${adjustedTime.getHours()}:${adjustedTime
     .getMinutes()
     .toString()
     .padStart(2, "0")}:${adjustedTime
@@ -40,21 +40,23 @@ function Clock({ offset }: ClockProps) {
   };
 
   return (
-    <div className="clock">
-      {renderHourMarks()}
-      <div className="dot"></div>
-      <div
-        className="hour-hand"
-        style={{ transform: `rotateZ(${adjustedTime.getHours() * 30}deg)` }}
-      ></div>
-      <div
-        className="minute-hand"
-        style={{ transform: `rotateZ(${adjustedTime.getMinutes() * 6}deg)` }}
-      ></div>
-      <div
-        className="second-hand"
-        style={{ transform: `rotateZ(${adjustedTime.getSeconds() * 6}deg)` }}
-      ></div>
+    <div className="container">
+      <div className="clock">
+        {renderHourMarks()}
+        <div className="dot"></div>
+        <div
+          className="hour-hand"
+          style={{ transform: `rotateZ(${adjustedTime.getHours() * 30}deg)` }}
+        ></div>
+        <div
+          className="minute-hand"
+          style={{ transform: `rotateZ(${adjustedTime.getMinutes() * 6}deg)` }}
+        ></div>
+        <div
+          className="second-hand"
+          style={{ transform: `rotateZ(${adjustedTime.getSeconds() * 6}deg)` }}
+        ></div>
+      </div>
       <div className="time-display">{formattedTime}</div>
     </div>
   );
