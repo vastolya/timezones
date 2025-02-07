@@ -11,8 +11,8 @@
   ],
   "routes": [
     {
-      "src": "/timezones.json",
-      "dest": "/timezones.json"
+      "src": "/bundle.js",
+      "dest": "/bundle.js"
     },
     {
       "src": "/(.*)",
