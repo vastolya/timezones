@@ -34,7 +34,7 @@ export default {
     ],
   },
   devServer: {
-    static: path.resolve(__dirname, "dist"),
+    static: path.resolve(__dirname, "public"),
     hot: true,
     port: 3000,
   },
