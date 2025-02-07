@@ -1,6 +1,7 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -33,7 +34,7 @@ export default {
     ],
   },
   devServer: {
-    static: path.resolve(__dirname, "public"),
+    static: path.resolve(__dirname, "dist"),
     hot: true,
     port: 3000,
   },
@@ -41,6 +42,14 @@ export default {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "public/timezones.json"),
+          to: "timezones.json",
+        },
+      ],
     }),
   ],
 };
