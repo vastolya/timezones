@@ -15,6 +15,10 @@
       "dest": "/bundle.js"
     },
     {
+      "src": "/timezones.json",
+      "dest": "/timezones.json"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
