@@ -46,7 +46,13 @@ function Clock({ offset }: ClockProps) {
         <div className="dot"></div>
         <div
           className="hour-hand"
-          style={{ transform: `rotateZ(${adjustedTime.getHours() * 30}deg)` }}
+          style={{
+            transform: `rotateZ(${
+              adjustedTime.getHours() * 30 +
+              adjustedTime.getMinutes() * 0.5 +
+              adjustedTime.getSeconds() * (0.5 / 60)
+            }deg)`,
+          }}
         ></div>
         <div
           className="minute-hand"
